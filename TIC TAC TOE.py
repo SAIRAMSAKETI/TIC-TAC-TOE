@@ -2,13 +2,13 @@ import tkinter as tk
 from tkinter import messagebox
 import random
 
-# Initialize window
+
 window = tk.Tk()
 window.title("Tic Tac Toe - Play vs Robot")
 window.geometry("400x500")
 window.configure(bg="#f0f0f0")
 
-# Global variables
+
 board = [""] * 9
 buttons = []
 player_symbol = "X"
@@ -17,7 +17,7 @@ game_over = False
 player_score = 0
 robot_score = 0
 
-# Winning combinations
+
 wins = [(0,1,2), (3,4,5), (6,7,8),
         (0,3,6), (1,4,7), (2,5,8),
         (0,4,8), (2,4,6)]
@@ -45,7 +45,7 @@ def robot_move():
     if game_over:
         return
 
-    # Block or Win logic
+    
     for symbol in [robot_symbol, player_symbol]:
         for i in range(9):
             if board[i] == "":
@@ -66,7 +66,7 @@ def robot_move():
                     return
                 board[i] = ""
 
-    # Random move
+    
     empty = [i for i in range(9) if board[i] == ""]
     if empty:
         idx = random.choice(empty)
@@ -108,9 +108,7 @@ def reset_game():
     for btn in buttons:
         btn.config(text="", state="normal")
 
-# --- GUI Layout ---
 
-# Scoreboard Frame
 score_frame = tk.Frame(window, bg="#d0e6a5", pady=10)
 score_frame.pack(fill="x")
 
@@ -120,7 +118,7 @@ player_score_label.pack(side="left", padx=20)
 robot_score_label = tk.Label(score_frame, text="Robot (O): 0", font=("Arial", 14), bg="#d0e6a5")
 robot_score_label.pack(side="right", padx=20)
 
-# Game board
+
 frame = tk.Frame(window)
 frame.pack(pady=20)
 
@@ -131,7 +129,7 @@ for i in range(9):
     btn.grid(row=i//3, column=i%3, padx=5, pady=5)
     buttons.append(btn)
 
-# Reset button
+
 reset_btn = tk.Button(window, text="Restart Game", command=reset_game,
                       font=("Arial", 14), bg="#4caf50", fg="white", padx=10, pady=5)
 reset_btn.pack(pady=10)
